@@ -1,0 +1,27 @@
+---
+# tasks file for nginx
+
+- name: NGINX | Installing NGINX
+  yum:
+    name: nginx
+    state: latest
+
+- name: NGINX | Remove default conf NGINX
+  file:
+    path: /etc/nginx/nginx.conf
+    state: absent
+
+- name: NGINX | Putting the configuration file
+  template:
+    src=nginx.conf
+    dest=/etc/nginx/nginx.conf
+
+- name: NGINX | Putting vhost blog configuration
+  template:
+    src=blog.conf
+    dest=/etc/nginx/conf.d/
+    
+- name: NGINX | Starting NGINX
+  service:
+    name: nginx
+    state: started

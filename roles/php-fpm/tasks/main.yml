@@ -1,0 +1,30 @@
+---
+# tasks file for php-fpm
+
+- name: PHP-FPM | Instlling PHP-FPM
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - php-fpm
+    - php-mysql
+
+- name: PHP-FPM | Remove default file php.ini
+  file:
+    path: /etc/php-fpm.d/php.ini
+    state: absent
+
+- name: PHP-FPM | Putting the configuration file
+  template:
+    src: blog.conf
+    dest: /etc/php-fpm.d/
+
+- name: PHP-FPM | Putting the configuration file
+  template:
+    src: php.ini
+    dest: /etc/php-fpm.d/
+
+- name: PHP-FPM | Starting PHP-FPM
+  service:
+    name: php-fpm
+    state: started

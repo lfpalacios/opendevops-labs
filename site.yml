@@ -1,0 +1,11 @@
+---
+
+- hosts: wordpress
+  user: ec2-user
+  become: yes
+
+  roles:
+   - nginx
+   - php-fpm
+   - mysql
+   - wordpress

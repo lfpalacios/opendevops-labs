@@ -1,0 +1,34 @@
+---
+# tasks file for mysql
+
+- name: Install libselinux-python
+  yum:
+    name: libselinux-python
+    state: present
+
+- name: Install gcc
+  yum:
+    name: gcc
+    state: present
+
+- name: Install Mysql package
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+   - mysql-server
+   - MySQL-python
+   - libselinux-python
+   - libsemanage-python
+   - python-devel
+   - mysql-devel
+
+- name: Install mysql-python
+  pip:
+    name: MySQL-python
+
+- name: Start Mysql Service
+  service:
+    name: mysqld
+    state: started
+    enabled: yes

@@ -1,0 +1,6 @@
+db_root: nome_user_root
+db_root_pw: senha_user_root
+db_host: endpoint_do_database
+wp_db_name: wp_database
+wp_db_user: wp_user
+wp_db_password: 0p3nd3v0p$
